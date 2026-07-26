@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シンプルタイマー</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>シンプルタイマー</h1>
+
+    <div class="display" id="display">00:00:00</div>
+
+    <div class="presets">
+      <button data-seconds="60">1分</button>
+      <button data-seconds="180">3分</button>
+      <button data-seconds="300">5分</button>
+      <button data-seconds="600">10分</button>
+    </div>
+
+    <div class="inputs">
+      <label>
+        分
+        <input type="number" id="minutesInput" min="0" max="999" value="1">
+      </label>
+      <label>
+        秒
+        <input type="number" id="secondsInput" min="0" max="59" value="0">
+      </label>
+    </div>
+
+    <div class="controls">
+      <button id="startBtn" class="primary">開始</button>
+      <button id="pauseBtn" disabled>一時停止</button>
+      <button id="resetBtn">リセット</button>
+    </div>
+
+    <p id="status" class="status"></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
