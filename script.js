@@ -6,6 +6,10 @@ const resetBtn = document.getElementById("resetBtn");
 const minutesInput = document.getElementById("minutesInput");
 const secondsInput = document.getElementById("secondsInput");
 const presetButtons = document.querySelectorAll(".presets button");
+const ringProgress = document.getElementById("ringProgress");
+
+const RING_CIRCUMFERENCE = 2 * Math.PI * 90;
+const DEFAULT_TITLE = document.title;
 
 let totalSeconds = 60;
 let remainingSeconds = totalSeconds;
@@ -18,9 +22,22 @@ function formatTime(seconds) {
   return [h, m, s].map((n) => String(n).padStart(2, "0")).join(":");
 }
 
+function updateRing() {
+  const ratio = totalSeconds > 0 ? remainingSeconds / totalSeconds : 0;
+  const offset = RING_CIRCUMFERENCE * (1 - ratio);
+  ringProgress.style.strokeDashoffset = offset;
+  ringProgress.classList.toggle("warning", remainingSeconds <= 10 && remainingSeconds > 0);
+}
+
+function updateTitle() {
+  document.title = intervalId ? `${formatTime(remainingSeconds)} - タイマー` : DEFAULT_TITLE;
+}
+
 function updateDisplay() {
   display.textContent = formatTime(remainingSeconds);
   display.classList.toggle("warning", remainingSeconds <= 10 && remainingSeconds > 0);
+  updateRing();
+  updateTitle();
 }
 
 function setInputsFromSeconds(seconds) {
@@ -63,6 +80,7 @@ function tick() {
     pauseBtn.disabled = true;
     statusEl.textContent = "タイマー終了！";
     statusEl.classList.add("done");
+    updateTitle();
     playBeep();
   }
 }
@@ -94,6 +112,7 @@ function pause() {
   startBtn.disabled = false;
   pauseBtn.disabled = true;
   statusEl.textContent = "一時停止中";
+  updateTitle();
 }
 
 function reset() {
@@ -124,5 +143,16 @@ pauseBtn.addEventListener("click", pause);
 resetBtn.addEventListener("click", reset);
 minutesInput.addEventListener("change", reset);
 secondsInput.addEventListener("change", reset);
+
+document.addEventListener("keydown", (event) => {
+  if (event.target === minutesInput || event.target === secondsInput) return;
+  if (event.code === "Space") {
+    event.preventDefault();
+    intervalId ? pause() : start();
+  } else if (event.code === "KeyR") {
+    event.preventDefault();
+    reset();
+  }
+});
 
 updateDisplay();

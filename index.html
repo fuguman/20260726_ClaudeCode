@@ -10,13 +10,20 @@
   <main class="card">
     <h1>シンプルタイマー</h1>
 
-    <div class="display" id="display">00:00:00</div>
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 200 200">
+        <circle class="ring-track" cx="100" cy="100" r="90"></circle>
+        <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="display" id="display">00:00:00</div>
+    </div>
 
     <div class="presets">
       <button data-seconds="60">1分</button>
       <button data-seconds="180">3分</button>
       <button data-seconds="300">5分</button>
       <button data-seconds="600">10分</button>
+      <button data-seconds="1500">25分</button>
     </div>
 
     <div class="inputs">
@@ -37,6 +44,7 @@
     </div>
 
     <p id="status" class="status"></p>
+    <p class="hint">キーボード: <kbd>Space</kbd> 開始/一時停止, <kbd>R</kbd> リセット</p>
   </main>
 
   <script src="script.js"></script>
