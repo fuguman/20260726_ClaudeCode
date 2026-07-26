@@ -1,0 +1,144 @@
+:root {
+  --bg: #1a1c2e;
+  --card-bg: #24273a;
+  --accent: #7c8cff;
+  --accent-hover: #9aa5ff;
+  --text: #f4f4f8;
+  --muted: #9a9db0;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1c2e, #2b2450);
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  color: var(--text);
+  padding: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.display {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 20px;
+}
+
+.display.warning {
+  color: var(--danger);
+}
+
+.presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.presets button {
+  flex: 1 1 70px;
+}
+
+.inputs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.inputs label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: var(--muted);
+  gap: 4px;
+}
+
+.inputs input {
+  width: 70px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #3a3d55;
+  background: #1d1f33;
+  color: var(--text);
+  font-size: 16px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #2f3350;
+  color: var(--text);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #3a3f63;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: var(--accent);
+  color: #101120;
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.status {
+  min-height: 20px;
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.status.done {
+  color: var(--danger);
+  font-weight: 600;
+}
